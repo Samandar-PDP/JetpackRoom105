@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.sdk.roomcomposemvvm.database.User
+import com.sdk.roomcomposemvvm.ui.LottieAnim
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -52,6 +53,9 @@ fun HomeScreen(
             }
         }
     ) { padding ->
+        if (userList.isEmpty()) {
+            LottieAnim()
+        }
         LazyColumn(
             modifier = Modifier.padding(padding),
             contentPadding = PaddingValues(16.dp),

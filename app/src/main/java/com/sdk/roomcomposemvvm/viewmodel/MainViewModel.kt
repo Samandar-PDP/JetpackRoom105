@@ -28,7 +28,6 @@ class MainViewModel(
             is NoteEvent.OnGetByIdUser -> {
                 viewModelScope.launch {
                     val dbUser = repository.getUserById(event.id)
-                    println("@@@${dbUser.value}")
                     user.postValue(dbUser.value)
                 }
             }

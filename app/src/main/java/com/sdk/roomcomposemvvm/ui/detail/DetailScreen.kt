@@ -87,9 +87,16 @@ fun DetailScreen(
                         onClick = {
                             keyboardController?.hide()
                             if (fullName.isNotBlank() && age.isNotBlank()) {
-                                viewModel.onEvent(NoteEvent.OnSaveUser(User(fullName, age.toInt())))
-                                scope.launch {
-                                    snackBar.showSnackbar("Saved!")
+                                if (id == 0) {
+                                    viewModel.onEvent(NoteEvent.OnSaveUser(User(fullName, age.toInt())))
+                                    scope.launch {
+                                        snackBar.showSnackbar("Saved!")
+                                    }
+                                } else {
+                                    viewModel.onEvent(NoteEvent.OnUpdateUser(User(fullName, age.toInt(),id.toLong())))
+                                    scope.launch {
+                                        snackBar.showSnackbar("Updated!")
+                                    }
                                 }
                             } else {
                                 scope.launch {
